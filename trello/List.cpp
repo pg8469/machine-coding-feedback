@@ -3,29 +3,21 @@
 #include<set>
 using namespace std;
 
-class List{
-    string id;
-    string name;
+class List: public Entity{
     set<Card*> cards; // ids
 
     public:
-    List(string id, string name){
-        this->id=id;
-        this->name=name;
+    List(string id, string name): Entity(id, name){
     }
 
     void addCard(Card* c){
         cards.insert(c);
     }
 
-    string getId(){
-        return this->id;
-    }
-
     string toString(){
         string res="";
-        res+="List Id: "+this->id;
-        res+=" Name: "+this->name;
+        res+="List Id: "+this->getId();
+        res+=" Name: "+this->getName();
         res+='\n';
         res+="Cards: \n";
         for(Card* c:cards){

@@ -2,24 +2,17 @@
 #include"List.cpp"
 #include<set>
 using namespace std;
-class Board{
-    string id;
-    string name;
+class Board: public Entity{
     string privacy = "PUBLIC";
     string url;
     set<string> members;
     set<List*> lists; // store list ids
 
     public:
-    Board(string id, string name){
-        this->id = id;
-        this->name=name;
-        this->url="/board/"+this->id;
+    Board(string id, string name): Entity(id, name){
+        this->url="/board/"+this->getId();
     }
 
-    string getId(){
-        return this->id;
-    }
 
     void addList(List* l){
         lists.insert(l);
@@ -27,8 +20,8 @@ class Board{
 
     string toString(){
         string res="";
-        res+="Board Id: "+this->id;
-        res+=" Name: "+this->name;
+        res+="Board Id: "+this->getId();
+        res+=" Name: "+this->getName();
         res+='\n';
         res+="Lists: \n";
         for(List* l:lists){
